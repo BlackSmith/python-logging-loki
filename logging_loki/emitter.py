@@ -8,7 +8,6 @@ import time
 from logging.config import ConvertingDict
 from typing import Any
 from typing import Dict
-from typing import List
 from typing import Optional
 from typing import Tuple
 
@@ -47,7 +46,7 @@ class LokiEmitter(abc.ABC):
         #: Optional tuple with username and password for basic authentication.
         self.auth = auth
 
-        self._session: Optional[requests.Session] = None
+        self._session = None
 
     def __call__(self, record: logging.LogRecord, line: str):
         """Send log record to Loki."""
@@ -120,7 +119,7 @@ class LokiEmitterV0(LokiEmitter):
 
     def build_labels(self, record: logging.LogRecord) -> str:
         """Return Loki labels string."""
-        labels: List[str] = []
+        labels = []
         for label_name, label_value in self.build_tags(record).items():
             cleared_name = self.format_label(str(label_name))
             cleared_value = str(label_value).replace('"', r"\"")

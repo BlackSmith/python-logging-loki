@@ -31,7 +31,7 @@ class LokiHandler(logging.Handler):
     `Loki API <https://github.com/grafana/loki/blob/master/docs/api.md>`_
     """
 
-    emitters: Dict[str, Type[emitter.LokiEmitter]] = {
+    emitters = {
         "0": emitter.LokiEmitterV0,
         "1": emitter.LokiEmitterV1,
     }
@@ -39,9 +39,9 @@ class LokiHandler(logging.Handler):
     def __init__(
         self,
         url: str,
-        tags: Optional[dict] = None,
-        auth: Optional[emitter.BasicAuth] = None,
-        version: Optional[str] = None,
+        tags = None,
+        auth = None,
+        version = None,
     ):
         """
         Create new Loki logging handler.
