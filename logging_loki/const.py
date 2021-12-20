@@ -26,3 +26,6 @@ label_replace_with = (
     (".", "_"),
     ("-", "_"),
 )
+
+# HTTP timeout
+timeout = 30
